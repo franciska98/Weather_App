@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Weather App</string>
 
+    <string name="search_tab_title">Search</string>
+    <string name="my_cities_tab_title">My cities</string>
+    <string name="settings_tab_title">Settings</string>
+
     <string name="search_fragment_recent">Recent</string>
 </resources>

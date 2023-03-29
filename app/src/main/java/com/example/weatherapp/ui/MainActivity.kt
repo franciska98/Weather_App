@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
                 2 -> { getDrawable(R.drawable.icons_android_ic_settings) }
                 else -> { getDrawable(R.drawable.ic_launcher_background) }
             }
+            tab.text = when (index) {
+                0 -> getString(R.string.search_tab_title)
+                1 -> getString(R.string.my_cities_tab_title)
+                else -> getString(R.string.settings_tab_title)
+            }
         }.attach()
     }
 }
