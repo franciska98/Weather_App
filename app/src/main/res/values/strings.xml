@@ -5,5 +5,6 @@
     <string name="my_cities_tab_title">My cities</string>
     <string name="settings_tab_title">Settings</string>
 
+    <string name="search_hint">Search cities</string>
     <string name="search_fragment_recent">Recent</string>
 </resources>
