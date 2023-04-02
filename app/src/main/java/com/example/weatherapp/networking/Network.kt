@@ -11,7 +11,7 @@ import javax.inject.Singleton
 class Network @Inject constructor() {
     private val interceptor = HttpLoggingInterceptor()
     private val httpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
-    private val baseUrl = "http://api.weatherapi.com/v1/"
+    private val baseUrl = "https://api.weatherapi.com/v1/"
 
     private val service = Retrofit
         .Builder()
