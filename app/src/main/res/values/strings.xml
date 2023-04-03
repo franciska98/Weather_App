@@ -1,10 +1,22 @@
 <resources>
     <string name="app_name">Weather App</string>
 
+    <string name="content_description_weather">Weather image</string>
+    <string name="content_description_star">Star icon</string>
+    <string name="content_description_search">Search icon</string>
+    <string name="content_description_delete">delete icon</string>
+
     <string name="search_tab_title">Search</string>
     <string name="my_cities_tab_title">My cities</string>
     <string name="settings_tab_title">Settings</string>
 
     <string name="search_hint">Search cities</string>
     <string name="search_fragment_recent">Recent</string>
+
+    <string name="weather_master_info_thermostat">Min/max</string>
+    <string name="weather_master_info_wind">Wind</string>
+    <string name="weather_master_info_humidity">Humidity</string>
+    <string name="weather_master_info_pressure">Pressure</string>
+    <string name="weather_master_info_visibility">Visibility</string>
+    <string name="weather_master_info_accuracy">Accuracy</string>
 </resources>

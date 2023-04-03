@@ -19,38 +19,40 @@
                 android:id="@+id/search_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icons_android_ic_search"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="12dp"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/icons_android_ic_search"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="12dp"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/content_description_search" />
 
             <AutoCompleteTextView
                 android:id="@+id/city_search_view"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:layout_constraintStart_toEndOf="@id/search_image_view"
                 android:layout_marginStart="24dp"
-                app:layout_constraintEnd_toStartOf="@id/search_close_image_view"
                 android:layout_marginEnd="24dp"
-                android:hint="@string/search_hint"
+                android:background="@color/on_color"
                 android:completionThreshold="3"
-                android:background="@color/on_color"/>
+                android:hint="@string/search_hint"
+                app:layout_constraintEnd_toStartOf="@id/search_close_image_view"
+                app:layout_constraintStart_toEndOf="@id/search_image_view" />
 
             <ImageView
                 android:id="@+id/search_close_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icons_android_ic_close"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="12dp"
-                android:visibility="invisible"/>
+                android:src="@drawable/icons_android_ic_close"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/content_description_delete" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
