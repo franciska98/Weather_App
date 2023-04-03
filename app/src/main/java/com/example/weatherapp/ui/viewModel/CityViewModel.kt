@@ -17,10 +17,6 @@ class CityViewModel @Inject constructor(
     private val _state = MutableLiveData(emptyList<City>())
     val cities: LiveData<List<City>> = _state
 
-    init {
-        getAllCities("Lon")
-    }
-
     fun getAllCities(name: String) {
         viewModelScope.launch {
             val cities = repository.getService().getAllCities(name)
