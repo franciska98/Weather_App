@@ -1,4 +1,4 @@
-package com.example.weatherapp.model
+package com.example.weatherapp.model.search
 
 data class City(
     val country: String,

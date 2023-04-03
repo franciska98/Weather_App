@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.weatherapp.model.City
+import com.example.weatherapp.model.search.City
 import com.example.weatherapp.networking.Network
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

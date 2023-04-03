@@ -1,4 +1,4 @@
-package com.example.weatherapp.model
+package com.example.weatherapp.model.forecast
 
 data class Astro(
     val is_moon_up: Int,
