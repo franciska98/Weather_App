@@ -1,6 +1,9 @@
 package com.example.weatherapp.ui.search
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private val viewModel: CityViewModel by activityViewModels()
+    private var _cityName = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,6 +26,18 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
+
+        binding.searchInputFields.citySearchView.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.length > 2) viewModel.getAllCities(s.toString())
+            }
+        })
 
         viewModel.cities.observe(
             viewLifecycleOwner,
@@ -35,6 +51,15 @@ class SearchFragment : Fragment() {
                         cityList,
                     ),
                 )
+        }
+
+        binding.searchInputFields.citySearchView.setOnItemClickListener { parent, view, position, id ->
+            val selectedCity = parent.getItemAtPosition(position) as String
+            val split: List<String> = selectedCity.split(", ")
+            _cityName = split[0]
+            val intent = Intent(requireContext(), CityItemActivity::class.java)
+            intent.putExtra("city", _cityName)
+            startActivity(intent)
         }
 
         return binding.root
