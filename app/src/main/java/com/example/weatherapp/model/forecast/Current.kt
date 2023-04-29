@@ -15,7 +15,7 @@ data class Current(
     val precip_mm: Int,
     val pressure_in: Double,
     val pressure_mb: Int,
-    val temp_c: Int,
+    val temp_c: Double,
     val temp_f: Double,
     val uv: Int,
     val vis_km: Int,

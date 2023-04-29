@@ -14,6 +14,8 @@ import com.example.weatherapp.databinding.FragmentSearchBinding
 import com.example.weatherapp.ui.viewModel.CityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+const val CITY_EXTRA = "city"
+
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
@@ -58,7 +60,7 @@ class SearchFragment : Fragment() {
             val split: List<String> = selectedCity.split(", ")
             _cityName = split[0]
             val intent = Intent(requireContext(), CityItemActivity::class.java)
-            intent.putExtra("city", _cityName)
+            intent.putExtra(CITY_EXTRA, _cityName)
             startActivity(intent)
         }
 
