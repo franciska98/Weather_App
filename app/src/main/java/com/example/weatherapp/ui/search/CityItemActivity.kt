@@ -3,9 +3,13 @@ package com.example.weatherapp.ui.search
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivityCityItemBinding
+import com.example.weatherapp.ui.adapter.FutureWeatherRecyclerAdapter
+import com.example.weatherapp.ui.adapter.TodayWeatherRecyclerAdapter
 import com.example.weatherapp.ui.viewModel.ForecastViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,6 +30,13 @@ class CityItemActivity : AppCompatActivity() {
             viewModel.getWeatherInfo(city, 7, NO, NO)
         }
 
+        with(binding.cityItemHeader) {
+            headerTitle.text = city
+            headerBack.setOnClickListener() {
+                finish()
+            }
+        }
+
         viewModel.forecast.observe(this) { forecastResponse ->
             with(binding.weatherMaster) {
                 cityNameTextView.text = forecastResponse.location.name
@@ -33,17 +44,41 @@ class CityItemActivity : AppCompatActivity() {
                 baseInfo.baseCityDateTextView.text = localTime[0]
                 baseInfo.baseCityTimeTextView.text = localTime[1]
                 baseInfo.baseCityWeatherTextView.text = forecastResponse.current.condition.text
-                baseInfo.baseCityTemperatureTextView.text = getString(R.string.base_city_temperature_text_view, forecastResponse.current.temp_c)
+                baseInfo.baseCityTemperatureTextView.text =
+                    getString(R.string.temperature_text_view, forecastResponse.current.temp_c)
                 baseInfo.baseCityWeatherImageView.load(forecastResponse.current.condition.icon)
                 thermostatValueTextView.text = getString(
                     R.string.thermostat_value_text_view,
                     forecastResponse.forecast.forecastday[0].day.mintemp_c,
                     forecastResponse.forecast.forecastday[0].day.maxtemp_c,
                 )
-                windValueTextView.text = getString(R.string.wind_value_text_view, forecastResponse.current.wind_kph)
+                windValueTextView.text =
+                    getString(R.string.wind_value_text_view, forecastResponse.current.wind_kph)
                 humidityValueTextView.text = "${forecastResponse.current.humidity}%"
-                pressureValueTextView.text = getString(R.string.pressure_value_text_view, forecastResponse.current.pressure_mb)
-                visibilityValueTextView.text = getString(R.string.visibility_value_text_view, forecastResponse.current.vis_km)
+                pressureValueTextView.text = getString(
+                    R.string.pressure_value_text_view,
+                    forecastResponse.current.pressure_mb,
+                )
+                visibilityValueTextView.text =
+                    getString(R.string.visibility_value_text_view, forecastResponse.current.vis_km)
+            }
+
+            val todayWeather = forecastResponse.forecast.forecastday[0].hour
+            val todayAdapter = TodayWeatherRecyclerAdapter(this, todayWeather)
+            with(binding.todayRecycler) {
+                titleTextView.text = getString(R.string.today_card_title)
+                weatherRecyclerView.layoutManager =
+                    LinearLayoutManager(this@CityItemActivity, RecyclerView.HORIZONTAL, false)
+                weatherRecyclerView.adapter = todayAdapter
+            }
+
+            val futureWeather = forecastResponse.forecast.forecastday
+            val futureAdapter = FutureWeatherRecyclerAdapter(this, futureWeather)
+            with(binding.futureRecycler) {
+                titleTextView.text = getString(R.string.future_card_title)
+                weatherRecyclerView.layoutManager =
+                    LinearLayoutManager(this@CityItemActivity, RecyclerView.HORIZONTAL, false)
+                weatherRecyclerView.adapter = futureAdapter
             }
         }
     }
