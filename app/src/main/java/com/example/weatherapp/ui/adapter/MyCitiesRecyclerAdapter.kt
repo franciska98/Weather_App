@@ -9,8 +9,13 @@ import coil.load
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.CardCityItemBinding
 import com.example.weatherapp.model.CurrentResponse
+import com.example.weatherapp.model.forecast.Location
 
-class MyCitiesRecyclerAdapter(val context: Context, private val cities: List<CurrentResponse>) :
+class MyCitiesRecyclerAdapter(
+    val context: Context,
+    private val cities: List<CurrentResponse>,
+    private val onStarClick: (Location) -> Unit,
+) :
     RecyclerView.Adapter<MyCitiesRecyclerAdapter.MyCitiesViewHolder>() {
 
     class MyCitiesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -28,10 +33,14 @@ class MyCitiesRecyclerAdapter(val context: Context, private val cities: List<Cur
         val cityWithWeather = cities[position]
         holder.binding.apply {
             cityNameTextView.text = cityWithWeather.location.name
+            starImageView.setOnClickListener {
+                onStarClick(cityWithWeather.location)
+            }
             cityTemperatureTextView.text = "${cityWithWeather.current.temp_c}°"
             weatherIconImageView.load("https:" + cityWithWeather.current.condition.icon)
             cityInfoTextView.text = cityWithWeather.location.localtime
-            cityInfoDistanceTextView.text = "lat:${cityWithWeather.location.lat} lon:${cityWithWeather.location.lon}"
+            cityInfoDistanceTextView.text =
+                "lat:${cityWithWeather.location.lat} lon:${cityWithWeather.location.lon}"
         }
     }
 }
