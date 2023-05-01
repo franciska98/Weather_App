@@ -10,6 +10,7 @@ import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivityCityItemBinding
 import com.example.weatherapp.ui.adapter.FutureWeatherRecyclerAdapter
 import com.example.weatherapp.ui.adapter.TodayWeatherRecyclerAdapter
+import com.example.weatherapp.ui.viewModel.CityViewModel
 import com.example.weatherapp.ui.viewModel.ForecastViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +20,7 @@ const val NO = "no"
 class CityItemActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCityItemBinding
     private val viewModel: ForecastViewModel by viewModels()
+    private val cityViewModel: CityViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCityItemBinding.inflate(layoutInflater)
@@ -63,6 +65,7 @@ class CityItemActivity : AppCompatActivity() {
         }
 
         viewModel.forecast.observe(this) { forecastResponse ->
+            cityViewModel.insertLocationToDb(this, forecastResponse.location)
             with(binding.weatherMaster) {
                 cityNameTextView.text = forecastResponse.location.name
                 val localTime = forecastResponse.location.localtime.split(" ")
