@@ -1,5 +1,6 @@
 package com.example.weatherapp.networking
 
+import com.example.weatherapp.model.CurrentResponse
 import com.example.weatherapp.model.forecast.ForecastResponse
 import com.example.weatherapp.model.search.AllCitiesResponse
 import retrofit2.http.GET
@@ -20,4 +21,10 @@ interface ApiService {
         @Query("aqi") aqi: String,
         @Query("alerts") alerts: String,
     ): ForecastResponse
+
+    @GET("current.json?key=$KEY")
+    suspend fun getCurrentWeather(
+        @Query("q") cityName: String,
+        @Query("aqi") aqi: String,
+    ): CurrentResponse
 }

@@ -33,10 +33,11 @@
             android:layout_height="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/icons_android_ic_star_zero"
+            android:src="@drawable/icons_android_ic_star_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/content_description_star" />
+            android:contentDescription="@string/content_description_star"
+            app:tint="@color/color_secondary" />
 
         <TextView
             android:id="@+id/city_info_text_view"

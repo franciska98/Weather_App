@@ -19,8 +19,10 @@
     <string name="weather_master_info_pressure">Pressure</string>
     <string name="weather_master_info_visibility">Visibility</string>
     <string name="weather_master_info_accuracy">Accuracy</string>
+    <string name="today_card_title">Today</string>
+    <string name="future_card_title">Next 7 days</string>
 
-    <string name="base_city_temperature_text_view">%.1f°</string>
+    <string name="temperature_text_view">%.1f°</string>
     <string name="thermostat_value_text_view">%.1f°/%.1f°</string>
     <string name="wind_value_text_view">%.1f km/h</string>
     <string name="pressure_value_text_view">%d hPa</string>
