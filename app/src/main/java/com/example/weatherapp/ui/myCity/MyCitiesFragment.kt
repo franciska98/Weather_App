@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.weatherapp.databinding.FragmentMyCitiesBinding
 import com.example.weatherapp.ui.adapter.MyCitiesRecyclerAdapter
-import com.example.weatherapp.ui.viewModel.CityViewModel
+import com.example.weatherapp.ui.viewModel.ForecastViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MyCitiesFragment : Fragment() {
     private lateinit var binding: FragmentMyCitiesBinding
-    private val cityViewModel: CityViewModel by activityViewModels()
+    private val viewModel: ForecastViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,9 +23,9 @@ class MyCitiesFragment : Fragment() {
     ): View {
         binding = FragmentMyCitiesBinding.inflate(inflater, container, false)
 
-        cityViewModel.getMyCitiesWithWeather(requireContext())
+        viewModel.getLocationWithWeather(requireContext())
 
-        cityViewModel.myCityWeather.observe(viewLifecycleOwner) { myCitiesWithWeather ->
+        viewModel.locationWithWeather.observe(viewLifecycleOwner) { myCitiesWithWeather ->
             val adapter = MyCitiesRecyclerAdapter(requireContext(), myCitiesWithWeather)
             binding.myCitiesRecyclerView.adapter = adapter
         }

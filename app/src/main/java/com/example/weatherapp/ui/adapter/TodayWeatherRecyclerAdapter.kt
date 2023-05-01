@@ -29,7 +29,7 @@ class TodayWeatherRecyclerAdapter(val context: Context, private val weather: Lis
         holder.binding.apply {
             if (itemCount > 7) {
                 dailyInfoTextView.text = hour.getHourTime()
-                dailyTemperatureTextView.text = hour.temp_c.toString() + "°"
+                dailyTemperatureTextView.text = "${hour.temp_c}°"
                 dailyWeatherImageView.load("https:" + hour.condition.icon)
             }
         }

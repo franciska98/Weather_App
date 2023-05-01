@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:layout_marginEnd="16dp"
-        android:src="@drawable/icons_android_ic_star_zero"
+        tools:src="@drawable/icons_android_ic_star_zero"
         android:tint="@color/color_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

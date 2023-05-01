@@ -28,10 +28,10 @@ class MyCitiesRecyclerAdapter(val context: Context, private val cities: List<Cur
         val cityWithWeather = cities[position]
         holder.binding.apply {
             cityNameTextView.text = cityWithWeather.location.name
-            cityTemperatureTextView.text = cityWithWeather.current.temp_c.toString() + "°"
+            cityTemperatureTextView.text = "${cityWithWeather.current.temp_c}°"
             weatherIconImageView.load("https:" + cityWithWeather.current.condition.icon)
             cityInfoTextView.text = cityWithWeather.location.localtime
-            cityInfoDistanceTextView.text = "lat:" + cityWithWeather.location.lat + " lon:" + cityWithWeather.location.lon
+            cityInfoDistanceTextView.text = "lat:${cityWithWeather.location.lat} lon:${cityWithWeather.location.lon}"
         }
     }
 }

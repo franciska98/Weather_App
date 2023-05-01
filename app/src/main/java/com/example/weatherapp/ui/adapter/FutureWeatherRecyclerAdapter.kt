@@ -28,7 +28,7 @@ class FutureWeatherRecyclerAdapter(val context: Context, private val weather: Li
         val future = weather[position]
         holder.binding.apply {
             dailyInfoTextView.text = future.date
-            dailyTemperatureTextView.text = future.day.avgtemp_c.toString() + "°"
+            dailyTemperatureTextView.text = "${future.day.avgtemp_c}°"
             dailyWeatherImageView.load("https:" + future.day.condition.icon)
         }
     }

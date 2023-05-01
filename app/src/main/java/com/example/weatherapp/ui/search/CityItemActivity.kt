@@ -24,16 +24,41 @@ class CityItemActivity : AppCompatActivity() {
         binding = ActivityCityItemBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val city = intent.getStringExtra(CITY_EXTRA)
+        val cityName = intent.getStringExtra(CITY_EXTRA)
 
-        if (city != null) {
-            viewModel.getWeatherInfo(city, 7, NO, NO)
+        if (cityName != null) {
+            viewModel.getWeatherInfo(cityName, 7, NO, NO)
+            viewModel.getLocationWithWeather(this)
+            viewModel.isLocationSaved(this@CityItemActivity, cityName)
         }
 
         with(binding.cityItemHeader) {
-            headerTitle.text = city
+            headerTitle.text = cityName
             headerBack.setOnClickListener() {
                 finish()
+            }
+            headerStar.setOnClickListener() {
+                if (viewModel.locationInDb.value == true) {
+                    headerStar.load(R.drawable.icons_android_ic_star_zero)
+                    viewModel.deleteLocationFromDb(
+                        this@CityItemActivity,
+                        viewModel.forecast.value!!.location,
+                    )
+                } else {
+                    headerStar.load(R.drawable.icons_android_ic_star_1)
+                    viewModel.insertLocationToDb(
+                        this@CityItemActivity,
+                        viewModel.forecast.value!!.location,
+                    )
+                }
+            }
+        }
+
+        viewModel.locationInDb.observe(this) {
+            if (it) {
+                binding.cityItemHeader.headerStar.load(R.drawable.icons_android_ic_star_1)
+            } else {
+                binding.cityItemHeader.headerStar.load(R.drawable.icons_android_ic_star_zero)
             }
         }
 
